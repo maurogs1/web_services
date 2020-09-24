@@ -1,0 +1,37 @@
+<div class="container">
+
+  <div class="col-12 text-center">Las los valores de la lista desplegable son los tipos de monedas que la API ofrece para hacer
+    los cambios <a target="_blank"  href="https://rapidapi.com/fyhao/api/currency-exchange"><p class="text-center">LINK DE
+      LA API USADA</p> </a></div>
+
+  <form class="card col-sm-12 col-md-8 bg-light m-auto" #cambioForm="ngForm">
+    <div class="card-header text-center"><h3>Casa de cambio</h3></div>
+    <div class="row form-group ">
+      <label class="col-sm-12 col-md-6">Ingrese la cantidad:</label>
+      <input class="form-control col-sm-12 col-md-6" type="number" name="cantidad" [(ngModel)]="total" required>
+    </div>
+    <div class="row form-group">
+      <label class="col-form-label col-sm-12 col-md-6 pt-0 ">Seleccion desde qué moneda desea convertir</label>
+      <select name="destino" [(ngModel)]="conversor.from" class="custom-select col-sm-12 col-md-6" required>
+        <option *ngFor="let moneda of monedas">{{moneda}}</option>
+      </select>
+    </div>
+    <div class="row form-group">
+      <label class="col-form-label col-sm-12 col-md-6 pt-0 ">Seleccion a qué moneda desea convertir</label>
+      <select name="destino" [(ngModel)]="conversor.to" class="custom-select col-sm-12 col-md-6" required>
+        <option *ngFor="let moneda of monedas">{{moneda}}</option>
+      </select>
+    </div>
+    <div class="row form-group" *ngIf="num1">
+      <label>Usted cambió a $ {{ num1 | number}}</label>
+    </div>
+
+
+    <div class="row form-group">
+      <button class="btn btn-outline-dark m-auto col-6 " type="submit" [disabled]="!cambioForm.form.valid"
+        (click)="traerRespuestaAPI() "> Aceptar </button>
+      <button class="btn btn-outline-dark m-auto col-6" (click)="borrar()">Borrar </button> <br>
+    </div>
+  </form>
+
+  </div>

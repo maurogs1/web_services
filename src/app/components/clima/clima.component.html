@@ -1,0 +1,30 @@
+<div class="container"> 
+  <p>La api devuelve todas las ciudades con la que coincida el nombre, por ejemplo hay   5 ciudades distintas que tienen como nombre London</p>
+  <div class="col-12"> <a target="_blank"  href="https://rapidapi.com/community/api/open-weather-map"> <p class="text-center">LINK DE
+    LA API USADA</p> </a></div>
+<form  #cambioForm="ngForm"><br>
+  <label  class="col-6  font-weight-bold " >Ingrese el nombre completo de  la ciudad</label>
+<input type="text"  name="ciudad" class=" col-4"  placeholder="Ejemplo London" [(ngModel)]="ciudad" required>
+<button class="col-2 float-right btn btn-outline-danger" [disabled]="!cambioForm.form.valid" (click)="mostrar()">Buscar ciudad</button>
+</form><br> 
+  <table class="table">
+  <thead>
+    <tr >
+      <th>ID de la ciudad</th>
+      <th>Ciudad</th>
+      <th>Temperatura mímina</th>
+      <th>Temperatura máxima</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of weathers">
+      <td>{{item.id}}</td>
+      <td> {{item.name}} </td>
+      <td> {{item.main.temp_min - 273.15 | number }} </td>
+      <td> {{item.main.temp_max - 273.15 | number }}   </td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="col-12"> <a target="_blank"  href="    https://rapidapi.com/systran/api/systran-io-translation-and-nlp
+    "> <p class="text-center">LINK DE
+    LA API USADA</p> </a></div>
+    <form class="card bg-light m-auto col-10" #cambioForm="ngForm">
+      <div class="card-header text-center">Punto traductor</div>
+      <div class="row form-group">
+        <label class="col-sm-12 col-md-4">Traducir desde el idioma: </label>
+        <select  name="opcion" [(ngModel)]="opcion"   class="custom-select col-sm-12 col-md-6"  required>
+          <option *ngFor="let idiomas of listaIdiomas"  >{{idiomas}}</option>
+          </select>
+      </div>
+      <div class="row form-group border-left m-auto" >
+        <textarea name="txtSource"  cols="50" rows="10" [(ngModel)]="traductor.input" required></textarea>
+          <label class="h-auto"  *ngIf="bandera" >Texto traducido:</label>
+          <textarea name="txtSource " *ngIf="bandera" cols="50" rows="10" [(ngModel)]="traductores[0].output"></textarea>
+  
+      </div>
+  
+      <button class="btn btn-outline-primary" [disabled]="!cambioForm.form.valid" (click)="pasarOpciomes(); traducirTexto()">Traducir</button>
+      <button class="btn btn-outline-primary" (click)="borrar()">Borrar </button>
+    </form>
+
+ 
+  </div>
+  

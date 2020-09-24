@@ -1,0 +1,61 @@
+<div class="container">
+  <h2 class="h2 text-center">Lista de todos los equipos de la NBA</h2>
+  <button class="col-sm-12  col-md-6 btn btn-outline-secondary " (click)="ocultarTeams()">Ocultar equipos</button>
+  <button class="col-sm-12  col-md-6  btn btn-outline-secondary " (click)="mostrarTeams()">Mostrar equipos</button>
+  <table class="table" *ngIf="!ocultarTeam">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fullname</th>
+        <th>city</th>
+        <th>Division</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of teams">
+        <td>{{item.id}}</td>
+        <td> {{item.name}} </td>
+        <td> {{item.city}} </td>
+        <td> {{item.division}} </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form class="card col-sm-12 " style="margin-top:  50px;" #cambioForm="ngForm">
+
+    <div class="row form-group">
+      <label class="col-sm-12 col-md-5  text-white bg-dark">Ingrese el nombre de un equipo para buscar sus
+        jugadores</label>
+      <input type="text" class="col-sm-12 col-md-4" placeholder="Ingrese la busqueda con el nombre de un equipo"
+        [(ngModel)]="busquedaJugadores" name="busquedaJugadores" required>
+      <button (click)="buscarJugadores()" [disabled]="!cambioForm.form.valid"
+        class="col-sm-12 col-md-3 btn btn-success">Buscar jugadores</button>
+    </div>
+  </form>
+
+  <table class="table" *ngIf="encontrado">
+    <thead>
+      <tr>
+        <th>Nombre del equipo</th>
+        <th>Nombre </th>
+        <th>Apellido</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of playersTeams">
+        <td>{{item.team.name}}</td>
+        <td> {{item.first_name}} </td>
+        <td> {{item.last_name}} </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card" style="margin-top: 50px;">
+    <div class="card-body bg-dark  text-white">
+      <div class="col-12"> <a target="_blank"  href="https://rapidapi.com/theapiguy/api/free-nba/"> <p class="text-center">LINK DE
+        LA API USADA</p> </a></div>
+    </div>
+
+  </div>
+</div>
